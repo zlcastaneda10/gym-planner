@@ -10,7 +10,7 @@ export default class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '',role: '', error: '' };
+    this.state = { email: '', password: '', error: '' };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +24,8 @@ export default class Signup extends React.Component {
 
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
-    const { email, password, role } = this.state;
-    Accounts.createUser({ email, username: email, password,role }, (err) => {
+    const { email, password } = this.state;
+    Accounts.createUser({ email, username: email, password}, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -61,15 +61,6 @@ export default class Signup extends React.Component {
                       name="password"
                       placeholder="Password"
                       type="password"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label="Role"
-                      icon="user"
-                      iconPosition="left"
-                      name="role"
-                      placeholder="Role"
-                      type="role"
                       onChange={this.handleChange}
                   />
                   <Form.Button content="Submit" >

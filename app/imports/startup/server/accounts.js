@@ -10,7 +10,6 @@ function createUser(email, password, role) {
     username: email,
     email: email,
     password: password,
-    role:role,
   });
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
