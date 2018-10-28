@@ -17,6 +17,8 @@ if (Stuffs.find().count() === 0) {
 }
 
 /** This subscription publishes only the documents associated with the logged in user */
+
+if(Meteor.isServer){
 Meteor.publish('Stuff', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
@@ -69,3 +71,4 @@ Meteor.publish('CategoryChest', function publish() {
   }
   return this.ready();
 });
+}
