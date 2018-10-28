@@ -13,7 +13,7 @@ export default class Signin extends React.Component {
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '',role: '', error: '', redirectToReferer: false };
+    this.state = { email: '', password: '', error: '', redirectToReferer: false };
     // Ensure that 'this' is bound to this component in these two functions.
     // https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,8 +27,8 @@ export default class Signin extends React.Component {
 
   /** Handle Signin submission using Meteor's account mechanism. */
   handleSubmit() {
-    const { email, password,role } = this.state;
-    Meteor.loginWithPassword(email, password, role, (err) => {
+    const { email, password } = this.state;
+    Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -70,15 +70,6 @@ export default class Signin extends React.Component {
                       name="password"
                       placeholder="Password"
                       type="password"
-                      onChange={this.handleChange}
-                  />
-                  <Form.Input
-                      label="Role"
-                      icon="user"
-                      iconPosition="left"
-                      name="role"
-                      placeholder="Role"
-                      type="role"
                       onChange={this.handleChange}
                   />
                   <Form.Button content="Submit">

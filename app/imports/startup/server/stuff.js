@@ -32,3 +32,40 @@ Meteor.publish('StuffAdmin', function publish() {
   }
   return this.ready();
 });
+
+Meteor.publish('CategoryArms', function publish() {
+  if (this.userId) {
+    return Stuffs.find({category:arms});
+  }
+  return this.ready();
+});
+Meteor.publish('CategoryLegs', function publish() {
+  if (this.userId) {
+    return Stuffs.find({category:legs});
+  }
+  return this.ready();
+});
+Meteor.publish('CategoryBack', function publish() {
+  if (this.userId) {
+    return Stuffs.find({category:back});
+  }
+  return this.ready();
+});
+Meteor.publish('CategoryAbs', function publish() {
+  if (this.userId) {
+    return Stuffs.find({category:abs});
+  }
+  return this.ready();
+});
+Meteor.publish('CategoryButtocks', function publish() {
+  if (this.userId) {
+    return Stuffs.find({category:buttocks});
+  }
+  return this.ready();
+});
+Meteor.publish('CategoryChest', function publish() {
+  if (this.userId) {
+    return Stuffs.find({category:chest});
+  }
+  return this.ready();
+});
