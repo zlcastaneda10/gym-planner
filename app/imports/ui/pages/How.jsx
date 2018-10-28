@@ -7,7 +7,8 @@ export default class Signout extends React.Component {
   render() {
     return (
       <Header textAlign="center">
-        <p>This is an application that seeks people to find exercise routines published by coaches without the need to go to the gym.</p>
+        <p>This is an application that helps users find a proper routin for the gym.</p>
+        <p>If you like a trainers's routine, you can always contact him</p>
       </Header>
     );
   }
