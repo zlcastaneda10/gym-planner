@@ -45,6 +45,8 @@ Steps:
 
 2)After you cloned the repository , you have to install all the dependencies
 
+    cd app
+
     npm install 
 
     meteor npm install
