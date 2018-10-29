@@ -18,12 +18,13 @@ Objetivos:
 
 Tecnologias usadas:
 
--Meteor
+    -Meteor
 
--React
+    -React
 
--Mongo
+    -Mongo
 
+    -Web design
 
 pagina del proyecto : 
 
