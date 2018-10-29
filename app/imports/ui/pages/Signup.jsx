@@ -9,7 +9,7 @@ import { withTracker } from 'meteor/react-meteor-data';
  */
 
 const options=[
-  { key: 'a', text: 'Admin', value: 'admin' },
+  { key: 'a', text: 'Trainer', value: 'admin' },
   { key: 'u', text: 'User', value: 'user' }
 ]
 class Signup extends React.Component {
@@ -55,7 +55,7 @@ class Signup extends React.Component {
                   <Form.Select
                   label="Role"
                   options={options}
-                  placeholder="Admin or User"
+                  placeholder="Trainer or User"
                   required
                   name="role"
                   onChange={this.handleChange}
@@ -76,6 +76,15 @@ class Signup extends React.Component {
                       name="password"
                       placeholder="Password"
                       type="password"
+                      onChange={this.handleChange}
+                  />
+                    <Form.Input
+                      label="Adress"
+                      icon="map"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Adress (Your adress,city,country)"
+                      type="text"
                       onChange={this.handleChange}
                   />
                   <Form.Button content="Submit"/>

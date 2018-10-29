@@ -27,6 +27,7 @@ class ListStuff extends React.Component {
                 <Table.HeaderCell>Category</Table.HeaderCell>
                 <Table.HeaderCell>Steps</Table.HeaderCell>
                 <Table.HeaderCell>Trainer</Table.HeaderCell>
+                <Table.HeaderCell>Raiting</Table.HeaderCell>
 
               </Table.Row>
             </Table.Header>
