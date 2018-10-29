@@ -35,7 +35,7 @@ Nicolas Simmonds Samper  https://github.com/Nicolas9415
 
 Screenshot:
 
-![screenshot]()
+![screenshot](https://raw.githubusercontent.com/jjgonzalez10/gym-planner/master/app/public/images/gym-routine.png)
 
 Steps:
 

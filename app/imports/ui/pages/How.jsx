@@ -13,6 +13,7 @@ export default class Signout extends React.Component {
         <p>If you enter as a User you only can see the list of routines that the trainers had already pushed and you can rating all of them</p>       
         <p>If you like a trainers's routine, you can always contact him</p>
       </Header>
+
     );
   }
 }
