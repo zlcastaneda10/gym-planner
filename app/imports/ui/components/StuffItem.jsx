@@ -14,8 +14,10 @@ class StuffItem extends React.Component {
    {
     this.setState({rating}, () =>{
       Stuffs.update(Stuffs._id,{$set:{score:this.state}});
+      console.log(Stuffs._id)
     });
 }
+
   render() {
     return (
         <Table.Row>

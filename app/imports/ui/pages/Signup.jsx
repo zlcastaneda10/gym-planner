@@ -63,6 +63,15 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
+                  <Form.Input
+                      label="Adress"
+                      icon="map"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Adress (Your adress,city,country)"
+                      type="text"
+                      onChange={this.handleChange}
+                  />
                   <Form.Button content="Submit" >
                   </Form.Button>
                 </Segment>
