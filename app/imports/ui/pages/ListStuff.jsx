@@ -19,7 +19,7 @@ class ListStuff extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Routines</Header>
-          <Table celled selectable sorted>
+          <Table celled>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>

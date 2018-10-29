@@ -13,7 +13,7 @@ class StuffItem extends React.Component {
   handleRate = (e, { rating }) =>
    {
     this.setState({rating}, () =>{
-      Stuffs.update(Stuffs._id,{$set:{rating}});
+      Stuffs.update(Stuffs._id,{$set:{score:this.state}});
     });
 }
   render() {
@@ -24,7 +24,7 @@ class StuffItem extends React.Component {
           <Table.Cell>{this.props.stuff.category}</Table.Cell>
           <Table.Cell>{this.props.stuff.steps}</Table.Cell>
           <Table.Cell>
-            <Rating icon='star' defaultRating={Stuffs.score} maxRating={5} onRate={this.handleRate}/>
+            <Rating icon='star' defaultRating={3} maxRating={5} onRate={this.handleRate}/>
           </Table.Cell>
           <Table.Cell>
             <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
