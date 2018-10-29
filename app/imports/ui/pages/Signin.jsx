@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
  */
-export default class Signin extends React.Component {
+class Signin extends React.Component {
 
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
@@ -72,8 +73,7 @@ export default class Signin extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Submit">
-                  </Form.Button>
+                  <Form.Button content="Submit"/>
                 </Segment>
               </Form>
               <Message>
@@ -98,4 +98,10 @@ export default class Signin extends React.Component {
 /** Ensure that the React Router location object is available in case we need to redirect. */
 Signin.propTypes = {
   location: PropTypes.object,
-};
+}
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(Signin);

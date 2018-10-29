@@ -19,8 +19,8 @@ class EditStuff extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, repetitions, category,steps,score, _id } = data;
-    Stuffs.update(_id, { $set: { name, repetitions, category,steps,score } }, (error) => (error ?
+    const { name, repetitions, category,steps, _id } = data;
+    Stuffs.update(_id, { $set: { name, repetitions, category,steps } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -43,7 +43,6 @@ class EditStuff extends React.Component {
                 <SelectField name='category'/>
                 <TextField name='steps'>
                 </TextField>
-                <NumField name='score' decimal={false} min={0} max={5}/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' />

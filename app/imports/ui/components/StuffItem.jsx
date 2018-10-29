@@ -13,10 +13,7 @@ class StuffItem extends React.Component {
           <Table.Cell>{this.props.stuff.repetitions}</Table.Cell>
           <Table.Cell>{this.props.stuff.category}</Table.Cell>
           <Table.Cell>{this.props.stuff.steps}</Table.Cell>
-          <Table.Cell>{this.props.stuff.score}</Table.Cell>
-          <Table.Cell>
-            <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
-          </Table.Cell>
+          <Table.Cell>{this.props.stuff.owner}</Table.Cell>
         </Table.Row>
     );
   }

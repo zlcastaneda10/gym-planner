@@ -2,11 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
-
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
  */
-export default class Signup extends React.Component {
+
+const options=[
+  { key: 'a', text: 'Admin', value: 'admin' },
+  { key: 'u', text: 'User', value: 'user' }
+]
+class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
@@ -22,10 +28,11 @@ export default class Signup extends React.Component {
     this.setState({ [name]: value });
   }
 
+  
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
-    const { email, password } = this.state;
-    Accounts.createUser({ email, username: email, password}, (err) => {
+    const { email, password,role } = this.state;
+    Accounts.createUser({ email, username: email, password,roles:[role]}, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -45,6 +52,14 @@ export default class Signup extends React.Component {
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>
+                  <Form.Select
+                  label="Role"
+                  options={options}
+                  placeholder="Admin or User"
+                  required
+                  name="role"
+                  onChange={this.handleChange}
+                  />
                   <Form.Input
                       label="Email"
                       icon="user"
@@ -63,8 +78,7 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Submit" >
-                  </Form.Button>
+                  <Form.Button content="Submit"/>
                 </Segment>
               </Form>
               <Message>
@@ -85,3 +99,9 @@ export default class Signup extends React.Component {
     );
   }
 }
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(Signup);

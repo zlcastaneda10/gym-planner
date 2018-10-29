@@ -34,9 +34,9 @@ class AddStuff extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, repetitions, category,steps,score } = data;
+    const { name, repetitions, category,steps} = data;
     const owner = Meteor.user().username;
-    Stuffs.insert({ name, repetitions, category,steps,score, owner }, this.insertCallback);
+    Stuffs.insert({ name, repetitions, category,steps, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -52,7 +52,6 @@ class AddStuff extends React.Component {
                 <SelectField name='category'/>
                 <TextField name='steps'>
                 </TextField>
-                <NumField name='score' decimal={false} min={0} max={5}/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
