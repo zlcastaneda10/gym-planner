@@ -16,6 +16,7 @@ const StuffSchema = new SimpleSchema({
     defaultValue: 'abs',
   },
   steps: String,
+
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

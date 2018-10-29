@@ -14,7 +14,8 @@ class StuffItem extends React.Component {
   handleRate = (e, { rating }) =>
    {
     this.setState({rating}, () =>{
-      Stuffs.update(Stuffs._id,{$set:{score:this.state}});
+      console.log(this.props.stuff.adress)
+
     });
 }	
   render() {
