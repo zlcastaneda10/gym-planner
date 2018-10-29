@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader,Search } from 'semantic-ui-react';
+import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import { Stuffs } from '/imports/api/stuff/stuff';
 import StuffItem from '/imports/ui/components/StuffItem';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -8,31 +8,6 @@ import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListStuff extends React.Component {
-
-  state = {
-      column: null,
-      data:null,
-      direction: null,
-    }
-
-    handleSort = clickedColumn => () => {
-    const { column, data, direction } = this.state
-
-    if (column !== clickedColumn) {
-      this.setState({
-        column: clickedColumn,
-        data: _.sortBy(data, [clickedColumn]),
-        direction: 'ascending',
-      })
-
-      return
-    }
-
-    this.setState({
-      data: data.reverse(),
-      direction: direction === 'ascending' ? 'descending' : 'ascending',
-    })
-  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -44,16 +19,14 @@ class ListStuff extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Routines</Header>
-          <Table sortable celled fixed>
+          <Table celled selectable sorted>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell sorted={column==='name'?direction:null}
-                onClick={this.handleSort('name')}
-                >Name</Table.HeaderCell>
+                <Table.HeaderCell>Name</Table.HeaderCell>
                 <Table.HeaderCell>Repetitions</Table.HeaderCell>
                 <Table.HeaderCell>Category</Table.HeaderCell>
                 <Table.HeaderCell>Steps</Table.HeaderCell>
-                <Table.HeaderCell>Rating</Table.HeaderCell>
+                <Table.HeaderCell>Score</Table.HeaderCell>
                 <Table.HeaderCell>Edit</Table.HeaderCell>
               </Table.Row>
             </Table.Header>

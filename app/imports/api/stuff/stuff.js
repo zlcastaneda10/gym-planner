@@ -12,8 +12,8 @@ const StuffSchema = new SimpleSchema({
   owner: String,
   category: {
     type: String,
-    allowedValues: ['arms', 'legs', 'back','abs', 'buttocks','chest'],
-    defaultValue: 'abs',
+    allowedValues: ['Arms', 'Legs', 'Back','Abs', 'Buttocks','Chest'],
+    defaultValue: 'Abs',
   },
   steps: String,
   score:Number,
