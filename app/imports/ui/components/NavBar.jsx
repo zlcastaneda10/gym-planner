@@ -38,7 +38,6 @@ class NavBar extends React.Component {
             ¿How to use it?
           </Header>
         </Menu.Item>
-<<<<<<< HEAD
         {this.props.currentUser
           ? [
               <Menu.Item
@@ -74,15 +73,6 @@ class NavBar extends React.Component {
         ) : (
           ""
         )}
-=======
-        {this.props.currentUser ? (
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List of Routines</Menu.Item>
-        ) : ''}
-        {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-            [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Routine</Menu.Item>,
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Trainer</Menu.Item>]
-        ) : ''}
->>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
         <Menu.Item position="right">
           {this.props.currentUser === "" ? (
             <Dropdown text="Login" pointing="top right" icon={"user"}>
