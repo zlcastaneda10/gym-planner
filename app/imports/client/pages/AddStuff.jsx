@@ -24,6 +24,7 @@ class AddStuff extends React.Component {
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
   insertCallback(error) {
+    console.log(error)
     if (error) {
       Bert.alert({ type: 'danger', message: `Add failed: You can't do this right now` });
     } else {
@@ -36,7 +37,7 @@ class AddStuff extends React.Component {
   submit(data) {
     const { name, repetitions, category,steps} = data;
     const owner = Meteor.user().username;
-    Stuffs.insert({ name, repetitions, category,steps, owner }, this.insertCallback);
+    Meteor.call("stuffs.insert",{name, repetitions, category, steps, owner}, this.insertCallback)
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -55,6 +56,9 @@ class AddStuff extends React.Component {
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
+                <HiddenField name='score' value='35'/>
+                <HiddenField name='username' value='jhon'/>
+                <HiddenField name='followers' value='0'/>
               </Segment>
             </AutoForm>
           </Grid.Column>

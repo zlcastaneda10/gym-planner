@@ -34,7 +34,7 @@ class App extends React.Component {
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <Route component={NotFound}/>
             </Switch>
-            <Footer/>
+            {/* <Footer/> */}
           </div>
         </Router>
     );
@@ -72,7 +72,9 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
           const isAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
           return (isLogged && isAdmin) ?
               (<Component {...props} />) :
-              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              !isLogged ? 
+              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>) : 
+              (<Redirect to={{ pathname: '/', state: { from: props.location } }}/>
               );
         }}
     />

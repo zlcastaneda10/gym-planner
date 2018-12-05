@@ -37,9 +37,9 @@ class Signup extends React.Component {
   
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
-    const { email, password, address } = this.state;
-    console.log(email, password);
-    Accounts.createUser({ email, username: email, password, address }, err => {
+    const { email, password, address, roles } = this.state;
+    console.log(email, password, roles);
+    Accounts.createUser({ email, username: email, password, address, roles }, err => {
       console.log(err);
       if (err) {
         this.setState({ error: err.reason });
@@ -68,7 +68,7 @@ class Signup extends React.Component {
                   options={options}
                   placeholder="Trainer or User"
                   required
-                  name="role"
+                  name="roles"
                   onChange={this.handleChange}
                   />
                   <Form.Input
@@ -120,8 +120,4 @@ class Signup extends React.Component {
   }
 }
 
-export default withTracker(() => {
-  return {
-    currentUser: Meteor.user(),
-  };
-})(Signup);
+export default Signup;

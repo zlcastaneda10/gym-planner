@@ -12,6 +12,7 @@ function createUser(email, password, role) {
     password: password,
     adress: adress,
   });
+  console.log(role)
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
   }

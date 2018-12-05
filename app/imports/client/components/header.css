@@ -1,15 +1,16 @@
+
 .Hero {
   width: 100%;
   position: relative;
   background-size: cover;
-  min-height: 800px;
+  min-height: 600px;
 }
 .Hero .content {
   position: relative;
   z-index: 4;
   width: 500px;
   left: 10vw;
-  top: 10vw;
+  top: 15vw;
 }
 .Hero .content .logo {
   max-width: 400px;
@@ -19,6 +20,7 @@
 }
 .Hero .content p {
   width: 100%;
+  color:white;
 }
 .Hero .content .button-wrapper {
   display: flex;
