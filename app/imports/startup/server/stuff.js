@@ -27,6 +27,11 @@ Meteor.publish('Stuff', function publish() {
   return this.ready();
 });
 
+Meteor.publish('usersList', function publish() {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Meteor.users.find({});
+});
+
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 Meteor.publish('StuffAdmin', function publish() {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
