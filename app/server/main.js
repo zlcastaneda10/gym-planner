@@ -1,13 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import '/imports/startup/both';
 import '/imports/startup/server';
-<<<<<<< HEAD
-
-Meteor.methods({
-
-  
-});
-=======
 import { Accounts } from 'meteor/accounts-base';
 
 
@@ -27,4 +20,3 @@ if(Meteor.isServer){
     }
   });
 }
->>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
