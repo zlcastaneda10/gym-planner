@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import {
@@ -10,10 +11,23 @@ import {
 } from "semantic-ui-react";
 import { Accounts } from "meteor/accounts-base";
 
+=======
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
  */
-export default class Signup extends React.Component {
+
+const options=[
+  { key: 'a', text: 'Trainer', value: 'admin' },
+  { key: 'u', text: 'User', value: 'user' }
+]
+class Signup extends React.Component {
   /** Initialize state fields. */
   constructor(props) {
     super(props);
@@ -29,12 +43,18 @@ export default class Signup extends React.Component {
     this.setState({ [name]: value });
   }
 
+  
   /** Handle Signup submission using Meteor's account mechanism. */
   handleSubmit() {
+<<<<<<< HEAD
     const { email, password, address } = this.state;
     console.log(email, password);
     Accounts.createUser({ email, username: email, password, address }, err => {
       console.log(err);
+=======
+    const { email, password,role } = this.state;
+    Accounts.createUser({ email, username: email, password,roles:[role]}, (err) => {
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
       if (err) {
         this.setState({ error: err.reason });
       } else {
@@ -57,6 +77,14 @@ export default class Signup extends React.Component {
               </Header>
               <Form onSubmit={this.handleSubmit}>
                 <Segment stacked>
+                  <Form.Select
+                  label="Role"
+                  options={options}
+                  placeholder="Trainer or User"
+                  required
+                  name="role"
+                  onChange={this.handleChange}
+                  />
                   <Form.Input
                     label="Email"
                     icon="user"
@@ -75,6 +103,7 @@ export default class Signup extends React.Component {
                     type="password"
                     onChange={this.handleChange}
                   />
+<<<<<<< HEAD
                   <Form.Input
                     label="Address"
                     icon="map"
@@ -85,6 +114,18 @@ export default class Signup extends React.Component {
                     onChange={this.handleChange}
                   />
                   <Form.Button content="Submit" />
+=======
+                    <Form.Input
+                      label="Adress"
+                      icon="map"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Adress (Your adress,city,country)"
+                      type="text"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Button content="Submit"/>
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
                 </Segment>
               </Form>
               <Message>
@@ -105,3 +146,9 @@ export default class Signup extends React.Component {
       );
   }
 }
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(Signup);

@@ -21,7 +21,6 @@ if (Stuffs.find().count() === 0) {
 if(Meteor.isServer){
 Meteor.publish('Stuff', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
     return Stuffs.find({});
   }
   return this.ready();
@@ -35,7 +34,8 @@ Meteor.publish('usersList', function publish() {
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 Meteor.publish('StuffAdmin', function publish() {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Stuffs.find();
+    const username = Meteor.users.findOne(this.userId).username;
+    return Stuffs.find({owner:username});
   }
   return this.ready();
 });

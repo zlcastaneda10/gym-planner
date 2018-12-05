@@ -1,6 +1,8 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { withRouter, Link } from 'react-router-dom';
+
 
 /** Renders a single row in the List Stuff (Admin) table. See pages/ListStuffAdmin.jsx. */
 class StuffItemAdmin extends React.Component {
@@ -11,8 +13,9 @@ class StuffItemAdmin extends React.Component {
           <Table.Cell>{this.props.stuff.repetitions}</Table.Cell>
           <Table.Cell>{this.props.stuff.category}</Table.Cell>
           <Table.Cell>{this.props.stuff.steps}</Table.Cell>
-          <Table.Cell>{this.props.stuff.score}</Table.Cell>
-          <Table.Cell>{this.props.stuff.owner}</Table.Cell>
+          <Table.Cell>
+            <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+          </Table.Cell>
         </Table.Row>
     );
   }

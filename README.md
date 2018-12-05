@@ -18,12 +18,13 @@ Objetivos:
 
 Tecnologias usadas:
 
--Meteor
+    -Meteor
 
--React
+    -React
 
--Mongo
+    -Mongo
 
+    -Web design
 
 pagina del proyecto : 
 
@@ -35,7 +36,7 @@ Nicolas Simmonds Samper  https://github.com/Nicolas9415
 
 Screenshot:
 
-![screenshot]()
+![screenshot](https://raw.githubusercontent.com/jjgonzalez10/gym-planner/master/app/public/images/gym-routine.png)
 
 Steps:
 
@@ -44,6 +45,8 @@ Steps:
     git clone https://github.com/jjgonzalez10/gym-planner.git
 
 2)After you cloned the repository , you have to install all the dependencies
+
+    cd app
 
     npm install 
 

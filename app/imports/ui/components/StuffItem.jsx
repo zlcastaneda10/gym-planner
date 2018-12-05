@@ -28,7 +28,7 @@ class StuffItem extends React.Component {
             <Rating icon='star' defaultRating={3} maxRating={5} onRate={this.handleRate}/>
           </Table.Cell>
           <Table.Cell>
-            <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+            <Rating icon='star' defaultRating={3} maxRating={5} onRate={this.handleRate}/>
           </Table.Cell>
         </Table.Row>
     );

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, Redirect } from "react-router-dom";
@@ -10,12 +11,25 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
+=======
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
  */
+<<<<<<< HEAD
 export default class Signin extends React.Component {
+=======
+class Signin extends React.Component {
+
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
   /** Initialize component state with properties for login and redirection. */
   constructor(props) {
     super(props);
@@ -59,6 +73,7 @@ export default class Signin extends React.Component {
     }
     // Otherwise return the Login form.
     return (
+<<<<<<< HEAD
       <Container>
         <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
           <Grid.Column>
@@ -103,11 +118,68 @@ export default class Signin extends React.Component {
           </Grid.Column>
         </Grid>
       </Container>
+=======
+        <Container>
+          <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
+            <Grid.Column>
+              <Header as="h2" textAlign="center">
+                Login to your account
+              </Header>
+              <Form onSubmit={this.handleSubmit}>
+                <Segment stacked>
+                  <Form.Input
+                      label="Email"
+                      icon="user"
+                      iconPosition="left"
+                      name="email"
+                      type="email"
+                      placeholder="E-mail address"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Input
+                      label="Password"
+                      icon="lock"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Password"
+                      type="password"
+                      onChange={this.handleChange}
+                  />
+                  <Form.Button content="Submit"/>
+                </Segment>
+              </Form>
+              <Message>
+                <Link to="/signup">Click here to Register</Link>
+              </Message>
+              {this.state.error === '' ? (
+                  ''
+              ) : (
+                  <Message
+                      error
+                      header="Login was not successful"
+                      content={this.state.error}
+                  />
+              )}
+            </Grid.Column>
+          </Grid>
+        </Container>
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
     );
   }
 }
 
 /** Ensure that the React Router location object is available in case we need to redirect. */
 Signin.propTypes = {
+<<<<<<< HEAD
   location: PropTypes.object
 };
+=======
+  location: PropTypes.object,
+}
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(Signin);
+>>>>>>> 89336e0bd6862e01e1836c7cf73477bf00f8ebf5
