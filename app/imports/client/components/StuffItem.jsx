@@ -14,6 +14,7 @@ import { Roles } from "meteor/alanning:roles";
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class StuffItem extends React.Component {
+  /**Zulma: por aqui falta el super?**/
   state = {};
 
   handleClick(id, active) {
@@ -32,6 +33,7 @@ class StuffItem extends React.Component {
         { follower: Meteor.userId(), id: id },
         (err, resp) => {
           if (!err) {
+            /**Creo que pueden mejor la legibilidad de esta parte, como que si !err no haga nada, entre mas sencillo de leer el codigo mas facil es mantenerlo, piensenlo con calma y le hacen refactor**/
 
           }
           console.log(err, resp);
@@ -56,6 +58,8 @@ class StuffItem extends React.Component {
     const imagen= this.props.stuff.category;
     let source;
     console.log(this.props.stuff);
+    
+    /*podrian guardar esta referencia en la base de datos y que la imagen sea solo un atributo mas del props*/
     if (imagen==="Abs")
     {
       source="/images/abs.png"
