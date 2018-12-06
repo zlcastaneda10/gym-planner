@@ -16,21 +16,20 @@ class ListStuffAdmin extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    console.log(this.props.followers)
+    console.log(this.props.routinesOfFollower)
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Routines (Trainer)</Header>
+          <Header as="h2" textAlign="center">Followers</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>Repetitions</Table.HeaderCell>
-                <Table.HeaderCell>Category</Table.HeaderCell>
-                <Table.HeaderCell>Steps</Table.HeaderCell>
-                <Table.HeaderCell>Edit</Table.HeaderCell>
+                <Table.HeaderCell>Username</Table.HeaderCell>
+                <Table.HeaderCell>Routines Followed</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {this.props.stuffs.map((stuff) => <StuffItemAdmin key={stuff._id} stuff={stuff} />)}
+              {this.props.followers.map((follower) => <StuffItemAdmin key={follower._id} stuff={follower} routines={this.props.routinesOfFollower[follower._id]} />)}
             </Table.Body>
           </Table>
         </Container>
@@ -48,8 +47,37 @@ ListStuffAdmin.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('StuffAdmin');
-  return {
-    stuffs: Stuffs.find({}).fetch(),
-    ready: subscription.ready(),
-  };
+  if(subscription.ready()){
+    let stuffs = Stuffs.find({}).fetch();
+    let routinesOfFollower = {}
+    let followers = stuffs.map((s)=>{
+      s.followers.map((f)=>{
+        if(routinesOfFollower[f] == undefined){
+          routinesOfFollower[f] = [s]
+        }
+        else{
+          routinesOfFollower[f].push(s);
+        }
+      })
+      return s.followers
+    })
+    followers = Array.from(new Set(followers))[0];
+    console.log(followers);
+    const subscription2 = Meteor.subscribe('followers',followers);
+
+    return {
+      stuffs: stuffs,
+      ready: subscription2.ready(),
+      followers:Meteor.users.find({_id: { "$in": followers}}).fetch(),
+      routinesOfFollower
+    };
+  }
+  else{
+    return {
+      stuffs: [],
+      ready: false,
+      followers: []
+    }
+  }
+  
 })(ListStuffAdmin);

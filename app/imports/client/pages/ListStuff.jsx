@@ -14,26 +14,21 @@ import { Stuffs } from "/imports/api/stuff/stuff";
 import StuffItem from "/imports/client/components/StuffItem";
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
+import { Roles } from "meteor/alanning:roles";
+
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListStuff extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { active: {} };
   }
-  handleClick(id, i) {
-    if (this.state.active[i])
+  handleClick(id, active) {
+    if (active)
       Meteor.call(
         "stuffs.unfollow",
         { follower: Meteor.userId(), id: id },
         (err, resp) => {
           if (!err) {
-            let active = this.state.active;
-            active[i] = false;
-
-            this.setState({
-              active: active
-            });
           }
         }
       );
@@ -43,26 +38,13 @@ class ListStuff extends React.Component {
         { follower: Meteor.userId(), id: id },
         (err, resp) => {
           if (!err) {
-            let active = this.state.active;
-            active[i] = true;
 
-            this.setState({
-              active: active
-            });
           }
           console.log(err, resp);
         }
       );
   }
-  componentDidMount() {
-    this.props.stuffs.map((stuff, i) => {
-      if (stuff.includes(Meteor.userId())) {
-        active[i] = true;
-      } else {
-        active[i] = false;
-      }
-    });
-  }
+  
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return this.props.ready ? (
@@ -74,6 +56,7 @@ class ListStuff extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const isAdmin = Roles.userIsInRole(Meteor.userId(), "admin");
     return (
       <Container>
         <Header as="h2" textAlign="center">
@@ -90,6 +73,7 @@ class ListStuff extends React.Component {
                   <Table.HeaderCell>Steps</Table.HeaderCell>
                   <Table.HeaderCell>Trainer</Table.HeaderCell>
                   <Table.HeaderCell>Raiting</Table.HeaderCell>
+                  {isAdmin && <Table.HeaderCell>Actions</Table.HeaderCell>}
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -101,41 +85,52 @@ class ListStuff extends React.Component {
           </Grid.Column>
           <Grid.Column width={2} style={{ marginTop: 46 }}>
             {this.props.stuffs.map((stuff, i) => {
-              if (stuff.owner != Meteor.userId()) {
-                return(
-                <Button
-                  toggle
-                  active={this.state.active[i]}
-                  style={{ height: 41 }}
-                  onClick={() => this.handleClick(stuff._id, i)}
-                  as="div"
-                  labelPosition="right"
-                >
-                  <Button toggle active={this.state.active[i]} icon>
-                    <Icon name="heart" />
-                    Follow
-                  </Button>
-                  <Label
-                    toggle
-                    active={this.state.active[i]}
-                    as="a"
-                    basic
-                    pointing="left"
-                  >
-                    {stuff.followers ? stuff.followers.length : 0}
-                  </Label>
-                </Button>);
-              } else
+              const active = stuff.followers.includes(Meteor.userId())
+              if (!isAdmin) {
                 return (
-                  <div style={{ height: 41 }} as="div" labelPosition="right">
-                    <div icon>
+                  <Button
+                    toggle
+                    active={active}
+                    style={{ height: 41 }}
+                    onClick={() => this.handleClick(stuff._id, active)}
+                    as="div"
+                    labelPosition="right"
+                  >
+                    <Button toggle active={active} icon>
                       <Icon name="heart" />
-                      Followers:
-                    </div>
-                    <Label as="a" basic pointing="left">
+                      Follow
+                    </Button>
+                    <Label
+                      active={active}
+                      as="a"
+                      basic
+                      pointing="left"
+                    >
                       {stuff.followers ? stuff.followers.length : 0}
                     </Label>
-                  </div>
+                  </Button>
+                );
+              } else
+                return (
+                  <Button
+                    active
+                    style={{ height: 41 }}
+                    as="div"
+                    labelPosition="right"
+                  >
+                    <Button icon active>
+                      <Icon name="heart" />
+                      Followers:
+                    </Button>
+                    <Label
+                      active
+                      as="a"
+                      basic
+                      pointing="left"
+                    >
+                      {stuff.followers ? stuff.followers.length : 0}
+                    </Label>
+                  </Button>
                 );
             })}
           </Grid.Column>

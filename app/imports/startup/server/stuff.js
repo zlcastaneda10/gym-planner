@@ -38,10 +38,15 @@ Meteor.publish('usersList', function publish() {
     return Meteor.users.find({});
 });
 
+Meteor.publish('followers', function publish(followers) {
+  console.log(followers)
+  return Meteor.users.find({_id: { "$in": followers}});
+});
+
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
 Meteor.publish('StuffAdmin', function publish() {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Stuffs.find({owner:Meteor.users.findOne(this.userId)});
+    return Stuffs.find({owner:this.userId});
   }
   return this.ready();
 });

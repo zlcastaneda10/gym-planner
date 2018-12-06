@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Rating, Button, Icon, Label } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
+import { Roles } from "meteor/alanning:roles";
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class StuffItem extends React.Component {
@@ -20,6 +21,7 @@ class StuffItem extends React.Component {
   };
 
   render() {
+    const isAdmin = Roles.userIsInRole(Meteor.userId(), "admin");
     console.log(this.props.stuff);
     return (
       <Table.Row>
@@ -37,6 +39,9 @@ class StuffItem extends React.Component {
             onRate={this.handleRate}
           />
         </Table.Cell>
+        {isAdmin && <Table.Cell>
+            <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+          </Table.Cell>}
       </Table.Row>
     );
   }
