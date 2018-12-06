@@ -12,6 +12,7 @@ import {
 } from "semantic-ui-react";
 import { Stuffs } from "/imports/api/stuff/stuff";
 import StuffItem from "/imports/client/components/StuffItem";
+import { Card, Image } from 'semantic-ui-react';
 import { withTracker } from "meteor/react-meteor-data";
 import PropTypes from "prop-types";
 import { Roles } from "meteor/alanning:roles";
@@ -67,6 +68,7 @@ class ListStuff extends React.Component {
             <Table celled>
               <Table.Header>
                 <Table.Row>
+                  
                   <Table.HeaderCell>Name</Table.HeaderCell>
                   <Table.HeaderCell>Repetitions</Table.HeaderCell>
                   <Table.HeaderCell>Category</Table.HeaderCell>
@@ -82,6 +84,32 @@ class ListStuff extends React.Component {
                 ))}
               </Table.Body>
             </Table>
+      
+            {/*
+              <Card>
+                <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
+                <Card.Content>
+                  <Card.Header>Name</Card.Header>
+                  <Card.Meta>
+                    <span className='date'>Repetitions</span>
+                  </Card.Meta>
+                  <Card.Description>Category</Card.Description>
+                  <Card.Description>Steps</Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <a>
+                    <Icon name='user' />
+                    <Card.Description>Trainer</Card.Description>
+                  </a>
+                </Card.Content>
+                <Card.Content extra>
+                  <a>
+                    <Icon name='user' />
+                    <Card.Description>Raiting</Card.Description>
+                  </a>
+                </Card.Content>
+              </Card>
+            */}
           </Grid.Column>
           <Grid.Column width={2} style={{ marginTop: 46 }}>
             {this.props.stuffs.map((stuff, i) => {

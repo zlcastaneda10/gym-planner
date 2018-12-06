@@ -32,6 +32,23 @@ class ListStuffAdmin extends React.Component {
               {this.props.followers.map((follower) => <StuffItemAdmin key={follower._id} stuff={follower} routines={this.props.routinesOfFollower[follower._id]} />)}
             </Table.Body>
           </Table>
+          
+          {/*
+          <Card>
+            <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
+            <Card.Content>
+              <Card.Header>Name</Card.Header>
+              <Card.Meta>
+               <span className='date'>Repetitions</span>
+              </Card.Meta>
+              <Card.Description>Category</Card.Description>
+              <Card.Description>Steps</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+            </Card.Content>
+          </Card>
+          */}
         </Container>
     );
   }
