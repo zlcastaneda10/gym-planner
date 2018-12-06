@@ -53,11 +53,38 @@ class StuffItem extends React.Component {
   render() {
     const isAdmin = Roles.userIsInRole(Meteor.userId(), "admin");
     const active = this.props.stuff.followers.includes(Meteor.userId())
-
+    const imagen= this.props.stuff.category;
+    let source;
     console.log(this.props.stuff);
+    if (imagen==="Abs")
+    {
+      source="/images/abs.png"
+    }
+    if (imagen==="Arms")
+    {
+      source="/images/arms.jpg"
+    }
+    if (imagen==="Back")
+    {
+      source="/images/back.png"
+    }
+    if (imagen==="Buttocks")
+    {
+      source="/images/buttocks.png"
+    }
+    if (imagen==="Chest")
+    {
+      source="/images/chest.jpg"
+    }
+    if (imagen==="Legs")
+    {
+      source="/images/legs.png"
+    }
     return (
+      
       <Card style={{marginBottom:10}}>
-        <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
+          {/*<Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />*/}
+          <Image src={source} />        
         <Card.Content>
           <Card.Header>{this.props.stuff.name}</Card.Header>
           <Card.Meta>
