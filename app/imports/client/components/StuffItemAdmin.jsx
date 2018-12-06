@@ -9,30 +9,21 @@ class StuffItemAdmin extends React.Component {
   render() {
     console.log(this.props)
     return (
-        <Table.Row>
-          <Table.Cell>{this.props.stuff.username}</Table.Cell>
-          <Table.Cell>{this.props.routines.map((routine,i)=>{
-
-            return (<Link to={`/edit/${routine._id}`}>{routine.name + (i == routine.length-1 ? (", "):(""))}</Link>)
-        })
-      }</Table.Cell>
-        </Table.Row>
-       /*
-      <Card>
+       <Card>
        <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
        <Card.Content>
-         <Card.Header>{this.props.stuff.name}</Card.Header>
+         <Card.Header>{this.props.stuff.username}</Card.Header>
          <Card.Meta>
-           <span className='date'>{this.props.stuff.repetitions}</span>
-         </Card.Meta>
-         <Card.Description>{this.props.stuff.category}</Card.Description>
-         <Card.Description>{this.props.stuff.steps}</Card.Description>
-       </Card.Content>
-       <Card.Content extra>
-         <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+          <span>Routines Followed:</span>
+         </Card.Meta> 
+         {this.props.routines.map((routine,i)=>{
+
+          return (<Card.Description><Link to={`/edit/${routine._id}`}>{routine.name + (i == routine.length-1 ? (", "):(""))}</Link></Card.Description>)
+
+          })
+        }
        </Card.Content>
      </Card>
-     */
     );
   }
 }
