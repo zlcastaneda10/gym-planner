@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Rating, Button, Icon, Label } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
+import { Card, Image } from 'semantic-ui-react';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class StuffItem extends React.Component {
@@ -38,6 +39,29 @@ class StuffItem extends React.Component {
           />
         </Table.Cell>
       </Table.Row>
+    
+     /*
+    <Card>
+      <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
+      <Card.Content>
+        <Card.Header>{this.props.stuff.name}</Card.Header>
+        <Card.Meta>
+          <span className='date'>{this.props.stuff.repetitions}</span>
+        </Card.Meta>
+        <Card.Description>{this.props.stuff.category}</Card.Description>
+        <Card.Description>{this.props.stuff.steps}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <Rating
+            icon="star"
+            defaultRating={this.props.stuff.score}
+            maxRating={5}
+            disabled={this.props.stuff.owner == Meteor.userId()}
+            onRate={this.handleRate}
+        />
+      </Card.Content>
+    </Card>
+    */
     );
   }
 }
