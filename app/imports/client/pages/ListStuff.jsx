@@ -101,7 +101,7 @@ class ListStuff extends React.Component {
           </Grid.Column>
           <Grid.Column width={2} style={{ marginTop: 46 }}>
             {this.props.stuffs.map((stuff, i) => {
-              if (stuff.owner == Meteor.userId()) {
+              if (stuff.owner != Meteor.userId()) {
                 return(
                 <Button
                   toggle
