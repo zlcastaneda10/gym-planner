@@ -9,7 +9,7 @@ class StuffItemAdmin extends React.Component {
   render() {
     console.log(this.props)
     return (
-       <Card>
+       <Card style={{marginBottom:10}}>
        <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
        <Card.Content>
          <Card.Header>{this.props.stuff.username}</Card.Header>

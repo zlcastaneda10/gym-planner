@@ -22,10 +22,10 @@ class EditStuff extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, repetitions, category,steps, _id } = data;
-    Stuffs.update(_id, { $set: { name, repetitions, category,steps } }, (error) => (error ?
-        Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
-        Bert.alert({ type: 'success', message: 'Update succeeded' })));
+    Meteor.call("stuffs.update", data, (err,res)=>{
+      err ? Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) : 
+      Bert.alert({ type: 'success', message: 'Update succeeded' });
+    })
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */

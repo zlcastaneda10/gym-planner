@@ -41,7 +41,7 @@ class StuffItem extends React.Component {
   handleRate = (e, { rating }) => {
     this.setState({ rating }, () => {
       Meteor.call(
-        "stuffs.update",
+        "stuffs.updateScore",
         { id: this.props.stuff._id, score: rating },
         (err, result) => {
           console.log(err, result);
@@ -56,7 +56,7 @@ class StuffItem extends React.Component {
 
     console.log(this.props.stuff);
     return (
-      <Card>
+      <Card style={{marginBottom:10}}>
         <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
         <Card.Content>
           <Card.Header>{this.props.stuff.name}</Card.Header>
@@ -83,7 +83,7 @@ class StuffItem extends React.Component {
           <Button
             toggle
             active={active}
-            style={{ height: 41 }}
+            style={{ height: 41, width:120 }}
             onClick={() => this.handleClick(this.props.stuff._id, active)}
             as="div"
             labelPosition="right"
@@ -97,7 +97,7 @@ class StuffItem extends React.Component {
             </Label>
           </Button>
         ) : (
-          <Button active style={{ height: 41 }} as="div" labelPosition="right">
+          <Button active style={{ height: 41, width:120 }} as="div" labelPosition="right">
             <Button icon active>
               <Icon name="heart" />
               Followers:

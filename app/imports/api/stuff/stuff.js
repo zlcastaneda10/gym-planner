@@ -46,9 +46,13 @@ Meteor.methods({
       followers:[]
     });
   },
-  "stuffs.update"(data){
+  "stuffs.updateScore"(data){
     const {id, score } = data
     Stuffs.update({_id:id},{$set:{score:score}});
+  },
+  "stuffs.update"(data){
+    const { name, repetitions, category,steps, _id } = data;
+    Stuffs.update(_id, { $set: { name, repetitions, category,steps } })
   },
   "stuffs.follow"(data){
     const {id, follower } = data
